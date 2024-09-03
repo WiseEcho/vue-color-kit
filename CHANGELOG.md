@@ -1,0 +1,20 @@
+## 1.0.7 (2024-09-03)
+
+### Bug Fixes
+
+- bump up dep ([96e59c5](https://github.com/anish2690/vue-color-cmstop/commit/96e59c56e4ca4ffb516a98fb05e917ea5060722e))
+- **view:** Added needed emit declarations that were causing vue console ([11fb33c](https://github.com/anish2690/vue-color-cmstop/commit/11fb33c2c7bc8165bfef8d42bf39a81d9f3a12fe))
+- build errors ([c6be8fd](https://github.com/anish2690/vue-color-cmstop/commit/c6be8fd132fda8808fb61f0faa59bc25a1be7f2f))
+- build errors ([887cdca](https://github.com/anish2690/vue-color-cmstop/commit/887cdca9d3c5c34d2ae0270face4719b15b59fa2))
+- demo link ([daa7825](https://github.com/anish2690/vue-color-cmstop/commit/daa782558a1dc3a2f7d1bbe911ceab503c84282a))
+- playground build and build directory ([debc807](https://github.com/anish2690/vue-color-cmstop/commit/debc8075a577fbb7fb9ae21a524d9c894402db25))
+- update build url ([c9f891b](https://github.com/anish2690/vue-color-cmstop/commit/c9f891bd6523b0c7de9b3b5b3641c4ef841aa931))
+- update deployment version ([0216c97](https://github.com/anish2690/vue-color-cmstop/commit/0216c97ed8f937fce42c2899718e557cb60ca2c0))
+- update readme with css ([79e2636](https://github.com/anish2690/vue-color-cmstop/commit/79e26360788d2abe884d1907e9f63f1798c0b5bd))
+- update version ([164ffef](https://github.com/anish2690/vue-color-cmstop/commit/164ffef0211089c1dea019d109d655c274daa2a0))
+
+### Features
+
+- ablity to add custom slot ([0f2c9ab](https://github.com/anish2690/vue-color-cmstop/commit/0f2c9ab32cbac9792add9c78d0d473698cebc89f))
+- add input focus update emit ([#249](https://github.com/anish2690/vue-color-cmstop/issues/249)) ([bdbb333](https://github.com/anish2690/vue-color-cmstop/commit/bdbb3334d73759291bc85a478ba1427a7bb6b96f))
+- bump up version ([f06aba1](https://github.com/anish2690/vue-color-cmstop/commit/f06aba1411669c412f416376e4af1f9d37ff0d2d))

@@ -1,14 +1,14 @@
 {
-  "name": "vue-color-kit",
-  "version": "1.0.6",
+  "name": "vue-color-cmstop",
+  "version": "1.0.7",
   "description": "Vue color picker",
-  "main": "dist/vue-color-kit.cjs.js",
-  "unpkg": "dist/vue-color-kit.global.js",
-  "jsdelivr": "dist/vue-color-kit.global.js",
-  "module": "dist/vue-color-kit.esm-bundler.js",
-  "types": "dist/vue-color-kit.d.ts",
+  "main": "dist/vue-color-cmstop.cjs.js",
+  "unpkg": "dist/vue-color-cmstop.global.js",
+  "jsdelivr": "dist/vue-color-cmstop.global.js",
+  "module": "dist/vue-color-cmstop.esm-bundler.js",
+  "types": "dist/vue-color-cmstop.d.ts",
   "sideEffects": false,
-  "author": "Anish George <anishgeorge2690@gmail.com>",
+  "author": "Arvin <zxy_email@qq.com>",
   "scripts": {
     "dev": "vite serve",
     "playground:build": "vite build",
@@ -27,7 +27,7 @@
   "files": [
     "dist/*.js",
     "dist/*.css",
-    "dist/vue-color-kit.d.ts",
+    "dist/vue-color-cmstop.d.ts",
     "LICENSE",
     "README.md"
   ],
@@ -101,10 +101,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/anish2690/vue-color-kit.git"
+    "url": "git+https://github.com/anish2690/vue-color-cmstop.git"
   },
   "bugs": {
-    "url": "https://github.com/anish2690/vue-color-kit/issues"
+    "url": "https://github.com/anish2690/vue-color-cmstop/issues"
   },
-  "homepage": "https://github.com/anish2690/vue-color-kit#readme"
+  "homepage": "https://github.com/anish2690/vue-color-cmstop#readme"
 }
