@@ -1,3 +1,5 @@
+## [1.0.8](https://github.com/anish2690/vue-color-cmstop/compare/v1.0.7...v1.0.8) (2024-09-03)
+
 ## 1.0.7 (2024-09-03)
 
 ### Bug Fixes
