@@ -36,8 +36,6 @@
       />
       <Sucker
         v-if="!suckerHide"
-        :sucker-canvas="suckerCanvas"
-        :sucker-area="suckerArea"
         @openSucker="openSucker"
         @selectSucker="selectSucker"
       />
@@ -102,14 +100,6 @@ export default defineComponent({
     suckerHide: {
       type: Boolean,
       default: true,
-    },
-    suckerCanvas: {
-      type: null, // HTMLCanvasElement
-      default: null,
-    },
-    suckerArea: {
-      type: Array,
-      default: () => [],
     },
     colorsDefault: {
       type: Array,
@@ -331,9 +321,6 @@ export default defineComponent({
     .colors.history {
       border-top: 1px solid #eee;
     }
-  }
-  canvas {
-    vertical-align: top;
   }
   .color-set {
     display: flex;

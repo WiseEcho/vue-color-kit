@@ -1,14 +1,14 @@
-# vue-color-kit
+# vue-color-cmstop
 
-## [LiveDemo](https://vue-color-kit.vercel.app)
+## [LiveDemo](https://vue-color-cmstop.vercel.app)
 
-![preview-dark](https://raw.githubusercontent.com/anish2690/vue-color-kit/master/src/img/preview-dark.jpg)
-![preview-light](https://raw.githubusercontent.com/anish2690/vue-color-kit/master/src/img/preview-light.jpg)
+![preview-dark](https://raw.githubusercontent.com/anish2690/vue-color-cmstop/master/src/img/preview-dark.jpg)
+![preview-light](https://raw.githubusercontent.com/anish2690/vue-color-cmstop/master/src/img/preview-light.jpg)
 
 ## Install
 
 ```bash
-$ yarn add vue-color-kit
+$ yarn add vue-color-cmstop
 ```
 
 ## Example
@@ -31,8 +31,8 @@ $ yarn add vue-color-kit
 </template>
 
 <script>
-  import { ColorPicker } from 'vue-color-kit'
-  import 'vue-color-kit/dist/vue-color-kit.css'
+  import { ColorPicker } from 'vue-color-cmstop'
+  import 'vue-color-cmstop/dist/vue-color-cmstop.css'
 
   export default {
     components: {
@@ -80,7 +80,7 @@ $ yarn add vue-color-kit
 | theme              | String            | `dark`                                                                                                                                                                                   | `dark` or `light`                       |
 | color              | String            | `#000000`                                                                                                                                                                                | `rgba` or `hex`                         |
 | colors-default     | Array             | `['#000000', '#FFFFFF', '#FF1900', '#F47365', '#FFB243', '#FFE623', '#6EFF2A', '#1BC7B1', '#00BEFF', '#2E81FF', '#5D61FF', '#FF89CF', '#FC3CAD', '#BF3DCE', '#8E00A7', 'rgba(0,0,0,0)']` | like `['#ff00ff', '#0f0f0f', ...]`      |
-| colors-history-key | String            | `vue-color-kit-history`                                                                                                                                                                  |
+| colors-history-key | String            | `vue-color-cmstop-history`                                                                                                                                                                  |
 | sucker-hide        | Boolean           | `true`                                                                                                                                                                                   | `true` or `false`                       |
 | sucker-canvas      | HTMLCanvasElement | `null`                                                                                                                                                                                   | like `document.createElement('canvas')` |
 | sucker-area        | Array             | `[]`                                                                                                                                                                                     | like `[x1, y1, x2, y2]`                 |

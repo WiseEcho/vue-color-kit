@@ -1,22 +1,20 @@
 <template>
   <div class="page">
     <div class="bg" :style="{ background: color }">
-      <div class="title">vue-color-kit</div>
+      <div class="title">vue-color-cmstop</div>
       <div class="cover">
         <color-picker
           :theme="theme"
           :color="color"
           :sucker-hide="false"
-          :sucker-canvas="suckerCanvas"
-          :sucker-area="suckerArea"
           @changeColor="changeColor"
           @openSucker="openSucker"
         />
-        <img v-if="isOpenSucker" ref="cover" />
+        <img ref="cover" />
       </div>
     </div>
     <div class="github">
-      <a href="https://github.com/anish2690/vue-color-kit" target="_blank">
+      <a href="https://github.com/anish2690/vue-color-cmstop" target="_blank">
         Fork me on GitHub
       </a>
     </div>
@@ -46,53 +44,18 @@ export default {
       inAnimation: false,
     }
   },
+  mounted() {
+    const cover = this.$refs.cover
+    cover.setAttribute('crossorigin', 'Anonymous')
+    cover.width = '800'
+    cover.src = imgCover
+  },
   methods: {
     changeColor(color) {
       const { r, g, b, a } = color.rgba
       this.color = `rgba(${r}, ${g}, ${b}, ${a})`
     },
-    openSucker(isOpen) {
-      this.isOpenSucker = isOpen
-      if (isOpen) {
-        setTimeout(() => {
-          const cover = this.$refs.cover
-          cover.onload = () => {
-            if (!this.isOpenSucker) {
-              return
-            }
-            const coverRect = cover.getBoundingClientRect()
-            const canvas = this.createCanvas(cover, coverRect)
-            document.body.appendChild(canvas)
-            this.suckerCanvas = canvas
-            this.suckerArea = [
-              coverRect.left,
-              coverRect.top,
-              coverRect.left + coverRect.width,
-              coverRect.top + coverRect.height,
-            ]
-          }
-          cover.setAttribute('crossorigin', 'Anonymous')
-          cover.width = '800'
-          cover.src = imgCover
-        }, 10)
-      } else {
-        this.suckerCanvas && this.suckerCanvas.remove()
-      }
-    },
-    createCanvas(cover, coverRect) {
-      const canvas = document.createElement('canvas')
-      const ctx = canvas.getContext('2d')
-      canvas.width = coverRect.width
-      canvas.height = coverRect.height
-      ctx.drawImage(cover, 0, 0, coverRect.width, coverRect.height)
-      Object.assign(canvas.style, {
-        position: 'absolute',
-        left: coverRect.left + 'px',
-        top: coverRect.top + 'px',
-        opacity: 0,
-      })
-      return canvas
-    },
+    openSucker(isOpen) {},
     changeTheme() {
       this.theme = this.theme ? '' : 'light'
       this.inAnimation = true

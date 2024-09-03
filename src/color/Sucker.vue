@@ -40,18 +40,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-// import imgSucker from '../img/sucker.png'
 export default defineComponent({
-  props: {
-    suckerCanvas: {
-      type: Object, // HTMLCanvasElement
-      default: null,
-    },
-    suckerArea: {
-      type: Array,
-      default: () => [],
-    },
-  },
   data() {
     return {
       isOpenSucker: false, // Whether it is in the straw state
@@ -59,125 +48,25 @@ export default defineComponent({
       isSucking: false, // Is it in a straw waiting state
     }
   },
-  watch: {
-    suckerCanvas(newVal) {
-      this.isSucking = false
-      this.suckColor(newVal)
-      // newVal.style.cursor = `url('../img/sucker.png') 0 32, default`
-      //TODO
-    },
-  },
   methods: {
-    openSucker() {
+    async openSucker() {
       if (!this.isOpenSucker) {
         this.isOpenSucker = true
         this.isSucking = true
-        this.$emit('openSucker', true)
-        document.addEventListener('keydown', this.keydownHandler)
+        if (!('EyeDropper' in window)) return;
+        try {
+          const eyeDropper = new (window as any).EyeDropper();
+          const result = await eyeDropper.open();
+          this.$emit('selectSucker', result.sRGBHex)
+          this.isOpenSucker = false
+          this.isSucking = false
+        } catch (error) {
+          console.error('取色器被取消或发生错误', error);
+        }
       } else {
-        // The processing logic is the same as pressing the esc key
-        this.keydownHandler({ keyCode: 27 })
-      }
-    },
-    keydownHandler(e: any) {
-      // esc
-      if (e.keyCode === 27) {
         this.isOpenSucker = false
         this.isSucking = false
-        this.$emit('openSucker', false)
-        document.removeEventListener('keydown', this.keydownHandler)
-        document.removeEventListener('mousemove', this.mousemoveHandler)
-        document.removeEventListener('mouseup', this.mousemoveHandler)
-        if (this.suckerPreview) {
-          // @ts-ignore
-          document.body.removeChild(this.suckerPreview)
-          this.suckerPreview = null
-        }
       }
-    },
-    mousemoveHandler(e: any) {
-      const { clientX, clientY } = e
-      const {
-        top: domTop,
-        left: domLeft,
-        width,
-        height,
-      } = this.suckerCanvas.getBoundingClientRect()
-      const x = clientX - domLeft
-      const y = clientY - domTop
-      const ctx = this.suckerCanvas.getContext('2d')
-      const imgData = ctx.getImageData(
-        Math.min(x, width - 1),
-        Math.min(y, height - 1),
-        1,
-        1
-      )
-      let [r, g, b, a] = imgData.data
-      a = parseFloat((a / 255).toFixed(2))
-      // @ts-ignore
-      const style = this.suckerPreview.style
-      Object.assign(style, {
-        position: 'absolute',
-        left: clientX + 20 + 'px',
-        top: clientY - 36 + 'px',
-        width: '24px',
-        height: '24px',
-        borderRadius: '50%',
-        border: '2px solid #fff',
-        boxShadow: '0 0 8px 0 rgba(0, 0, 0, 0.16)',
-        background: `rgba(${r}, ${g}, ${b}, ${a})`,
-        zIndex: 95, // The level of the preview color of the small circle of the eyedropper cannot exceed the color selector
-      })
-      if (
-        this.suckerArea.length &&
-        // @ts-ignore
-        clientX >= this.suckerArea[0] &&
-        // @ts-ignore
-
-        clientY >= this.suckerArea[1] &&
-        // @ts-ignore
-
-        clientX <= this.suckerArea[2] &&
-        // @ts-ignore
-
-        clientY <= this.suckerArea[3]
-      ) {
-        // @ts-ignore
-
-        style.display = ''
-      } else {
-        // @ts-ignore
-        style.display = 'none'
-      }
-    },
-    suckColor(dom: any) {
-      if (dom && dom.tagName !== 'CANVAS') {
-        return
-      }
-      // @ts-ignore
-      this.suckerPreview = document.createElement('div')
-      // @ts-ignore
-      if (this.suckerPreview) document.body.appendChild(this.suckerPreview)
-
-      document.addEventListener('mousemove', this.mousemoveHandler)
-      document.addEventListener('mouseup', this.mousemoveHandler)
-
-      dom.addEventListener('click', (e: any) => {
-        const { clientX, clientY } = e
-        const { top, left, width, height } = dom.getBoundingClientRect()
-        const x = clientX - left
-        const y = clientY - top
-        const ctx = dom.getContext('2d')
-        const imgData = ctx.getImageData(
-          Math.min(x, width - 1),
-          Math.min(y, height - 1),
-          1,
-          1
-        )
-        let [r, g, b, a] = imgData.data
-        a = parseFloat((a / 255).toFixed(2))
-        this.$emit('selectSucker', { r, g, b, a })
-      })
     },
   },
 })

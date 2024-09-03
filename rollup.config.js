@@ -119,7 +119,7 @@ function createConfig(format, output, plugins = []) {
     scss({
       output: (css) => {
         const newcss = new CleanCSS().minify(css)
-        fs.writeFile('dist/vue-color-kit.css', newcss.styles, () => {})
+        fs.writeFile('dist/vue-color-cmstop.css', newcss.styles, () => {})
         return newcss.styles
       },
     }),
@@ -176,6 +176,7 @@ function createReplacePlugin(
     __GLOBAL__: isGlobalBuild,
     // is targeting Node (SSR)?
     __NODE_JS__: isNodeBuild,
+    preventAssignment: true,
   }
   // allow inline overrides like
   //__RUNTIME_COMPILE__=true yarn build
