@@ -53,6 +53,7 @@ export default defineComponent({
       if (!this.isOpenSucker) {
         this.isOpenSucker = true
         this.isSucking = true
+        this.$emit('openSucker', this.isOpenSucker)
         if (!('EyeDropper' in window)) return;
         try {
           const eyeDropper = new (window as any).EyeDropper();
@@ -60,12 +61,14 @@ export default defineComponent({
           this.$emit('selectSucker', result.sRGBHex)
           this.isOpenSucker = false
           this.isSucking = false
+          this.$emit('openSucker', this.isOpenSucker)
         } catch (error) {
           console.error('取色器被取消或发生错误', error);
         }
       } else {
         this.isOpenSucker = false
         this.isSucking = false
+        this.$emit('openSucker', this.isOpenSucker)
       }
     },
   },
