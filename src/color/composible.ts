@@ -1,7 +1,13 @@
 export function setColorValue(color: string) {
   let rgba: any = { r: 0, g: 0, b: 0, a: 1 }
   // 处理颜色名称
-  if (!/#/.test(color) && !/rgb/.test(color) && typeof color === 'string') {
+  if (color.toLowerCase() === 'transparent') {
+    color = 'rgba(0, 0, 0, 0)'
+  } else if (
+    !/#/.test(color) &&
+    !/rgb/.test(color) &&
+    typeof color === 'string'
+  ) {
     color = getColorValueFromName(color)
   }
   if (/#/.test(color)) {
