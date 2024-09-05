@@ -1,3 +1,9 @@
+## [1.1.2](https://github.com/anish2690/vue-color-cmstop/compare/v1.1.1...v1.1.2) (2024-09-05)
+
+### Bug Fixes
+
+- 优化颜色选择器 ([b314b7f](https://github.com/anish2690/vue-color-cmstop/commit/b314b7f80f48fb39c45e69efdac73c4fbc79660a))
+
 ## [1.1.1](https://github.com/anish2690/vue-color-cmstop/compare/v1.1.0...v1.1.1) (2024-09-05)
 
 ### Bug Fixes
