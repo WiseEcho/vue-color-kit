@@ -1,5 +1,9 @@
 export function setColorValue(color: string) {
   let rgba: any = { r: 0, g: 0, b: 0, a: 1 }
+  // 处理颜色名称
+  if (!/#/.test(color) && !/rgb/.test(color) && typeof color === 'string') {
+    color = getColorValueFromName(color)
+  }
   if (/#/.test(color)) {
     rgba = hex2rgb(color)
   } else if (/rgb/.test(color)) {
@@ -57,10 +61,20 @@ export function rgb2hex({ r, g, b }: any, toUpper: boolean) {
 export function hex2rgb(hex: any) {
   hex = hex.slice(1)
   const change = (val: any) => parseInt(val, 16) || 0 // Avoid NaN situations
+
+  // 如果是 3 位或 4 位十六进制颜色值，将其转换为 6 位或 8 位
+  if (hex.length === 3 || hex.length === 4) {
+    hex = hex
+      .split('')
+      .map((char: string) => char + char)
+      .join('')
+  }
+
   return {
     r: change(hex.slice(0, 2)),
     g: change(hex.slice(2, 4)),
     b: change(hex.slice(4, 6)),
+    a: hex.length === 8 ? change(hex.slice(6, 8)) / 255 : 1, // 透明度值在 0 到 1 之间
   }
 }
 export function rgb2rgba(rgba: any) {
@@ -101,4 +115,13 @@ export function rgb2hsv({ r, g, b }: any) {
   let s = parseFloat((max === 0 ? 0 : 1 - min / max).toFixed(2))
   let v = parseFloat(max.toFixed(2))
   return { h, s, v }
+}
+
+export function getColorValueFromName(colorName: string): string {
+  const div = document.createElement('div')
+  div.style.color = colorName
+  document.body.appendChild(div)
+  const colorValue = window.getComputedStyle(div).color
+  document.body.removeChild(div)
+  return colorValue
 }
