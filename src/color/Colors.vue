@@ -1,23 +1,15 @@
 <template>
-  <div>
+  <div class="pre-colors-wrap">
+    <div class="title-tip">系统预设颜色</div>
     <ul class="colors">
-      <li
-        v-for="item in colorsDefault"
-        :key="item"
-        class="item"
-        @click="selectColor(item)"
-      >
+      <li v-for="item in colorsDefault" :key="item" class="item" @click="selectColor(item)">
         <div :style="{ background: `url(${imgAlphaBase64})` }" class="alpha" />
         <div :style="{ background: item }" class="color" />
       </li>
     </ul>
+    <div v-if="colorsHistory.length" class="title-tip">历史设置颜色</div>
     <ul v-if="colorsHistory.length" class="colors history">
-      <li
-        v-for="item in colorsHistory"
-        :key="item"
-        class="item"
-        @click="selectColor(item)"
-      >
+      <li v-for="item in colorsHistory" :key="item" class="item" @click="selectColor(item)">
         <div :style="{ background: `url(${imgAlphaBase64})` }" class="alpha" />
         <div :style="{ background: item }" class="color" />
       </li>
@@ -94,41 +86,57 @@ export default defineComponent({
 })
 </script>
 <style lang="scss">
-.colors {
-  padding: 0;
-  margin: 0;
-  &.history {
+.pre-colors-wrap {
+  .title-tip {
+    font-size: 12px;
+    color: #e5e6eb;
     margin-top: 10px;
-    border-top: 1px solid #2e333a;
+    transform: scale(0.9);
+    transform-origin: left;
   }
-  .item {
-    position: relative;
-    width: 16px;
-    height: 16px;
-    margin: 10px 0 0 10px;
-    border-radius: 3px;
-    box-sizing: border-box;
-    vertical-align: top;
-    display: inline-block;
-    transition: all 0.1s;
-    cursor: pointer;
-    &:nth-child(8n + 1) {
-      margin-left: 0;
+
+  .colors {
+    padding: 0;
+    margin: 0;
+
+    &.history {
+      margin-top: 10px;
+      border-top: 1px solid #2e333a;
     }
-    &:hover {
-      transform: scale(1.4);
-    }
-    .alpha {
-      height: 100%;
-      border-radius: 4px;
-    }
-    .color {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
+
+    .item {
+      position: relative;
+      width: 14px;
+      height: 14px;
+      margin: 6px 0 0 6px;
       border-radius: 3px;
+      box-sizing: border-box;
+      vertical-align: top;
+      display: inline-block;
+      transition: all 0.1s;
+      cursor: pointer;
+
+      &:nth-child(10n + 1) {
+        margin-left: 0;
+      }
+
+      &:hover {
+        transform: scale(1.4);
+      }
+
+      .alpha {
+        height: 100%;
+        border-radius: 4px;
+      }
+
+      .color {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 3px;
+      }
     }
   }
 }

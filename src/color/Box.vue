@@ -1,8 +1,8 @@
 <template>
   <div class="color-type">
-    <span class="name">
+    <!-- <span class="name">
       {{ name }}
-    </span>
+    </span> -->
     <input
       v-model="modelColor"
       class="value"
@@ -56,27 +56,22 @@ export default defineComponent({
 <style lang="scss">
 .color-type {
   display: flex;
-  margin-top: 8px;
   font-size: 12px;
-  .name {
-    width: 60px;
-    height: 30px;
-    float: left;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #999;
-    background: #252930;
-  }
+  height: 100%;
+  flex: 1;
   .value {
-    flex: 1;
-    height: 30px;
-    min-width: 100px;
+    width: 100%;
+    height: 100%;
     padding: 0 12px;
     border: 0;
     color: #fff;
     background: #2e333a;
     box-sizing: border-box;
+    display: flex;
+    &:active,
+    &:focus {
+      outline: none;
+    }
   }
 }
 </style>

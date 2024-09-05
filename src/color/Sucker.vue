@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="sucker-wrap">
     <svg
       v-if="!isSucking"
       :class="{ active: isOpenSucker }"
@@ -76,7 +76,15 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.sucker {
+.sucker-wrap {
+  height: 30px;
+  width: 30px;
+  &:hover {
+    .sucker {
+      background: #4d535c;
+    }
+  }
+  .sucker {
   width: 30px;
   fill: #9099a4;
   background: #2e333a;
@@ -87,4 +95,6 @@ export default defineComponent({
     fill: #1593ff;
   }
 }
+}
+
 </style>
