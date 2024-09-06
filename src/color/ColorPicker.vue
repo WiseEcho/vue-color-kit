@@ -105,6 +105,7 @@ export default defineComponent({
       showModel: 'HEX',
       modelOptions: [{ label: 'HEX', value: 'HEX' }, { label: 'RGBA', value: 'RGBA' }],
       modelRgba: '',
+      oldColor: '',
       modelHex: '',
       r: 0,
       g: 0,
