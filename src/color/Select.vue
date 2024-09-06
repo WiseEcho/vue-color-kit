@@ -102,14 +102,14 @@ export default defineComponent({
 <style lang="scss">
 .arco-select-wrapper {
     position: relative;
-    width: 50px;
+    width: 38px;
 
     .arco-select {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        min-height: 30px;
-        padding: 0 5px;
+        min-height: 25px;
+        padding: 0 4px;
         background-color: #48505a;
         color: #e5e6eb;
         cursor: pointer;
@@ -119,7 +119,9 @@ export default defineComponent({
     .arco-select-value {
         font-size: 12px;
         color: #e5e6eb;
-        transform: scale(0.8);
+        transform: scale(0.6);
+        transform-origin: left;
+        width: 20px;
     }
 
     .arco-select-arrow {
@@ -152,12 +154,12 @@ export default defineComponent({
     }
 
     .arco-select-option {
-        padding: 2px 5px;
+        padding: 2px;
         font-size: 12px;
         color: #e5e6eb;
         cursor: pointer;
         transition: background-color 0.1s;
-        transform: scale(0.8);
+        transform: scale(0.7);
 
         &-selected {
             font-weight: 500;

@@ -77,17 +77,17 @@ export default defineComponent({
 
 <style lang="scss">
 .sucker-wrap {
-  height: 30px;
-  width: 30px;
+  height: 24px;
+  width: 24px;
+  background: #2e333a;
   &:hover {
     .sucker {
       background: #4d535c;
     }
   }
   .sucker {
-  width: 30px;
+  width: 24px;
   fill: #9099a4;
-  background: #2e333a;
   cursor: pointer;
   transition: all 0.3s;
   &:hover,

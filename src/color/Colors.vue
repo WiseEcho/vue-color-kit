@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onUnmounted, ref } from 'vue'
+import { defineComponent, ref } from 'vue'
 import { createAlphaSquare } from './composible'
 export default defineComponent({
   name: 'ColorPicker',
@@ -48,10 +48,6 @@ export default defineComponent({
 
     imgAlphaBase64.value = createAlphaSquare(4).toDataURL()
 
-    onUnmounted(() => {
-      setColorsHistory(color.value)
-    })
-
     function setColorsHistory(color: string) {
       if (!color) {
         return
@@ -62,8 +58,8 @@ export default defineComponent({
       if (index >= 0) {
         colors.splice(index, 1)
       }
-      if (colors.length >= 8) {
-        colors.length = 7
+      if (colors.length >= 10) {
+        colors.length = 9
       }
       // @ts-ignore
       colors.unshift(color)

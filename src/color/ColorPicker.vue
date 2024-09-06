@@ -17,8 +17,11 @@
       <Box name="RGBA" v-show="showModel === 'RGBA'" :color="modelRgba" @inputColor="inputRgba"
         @inputFocus="handleFocus" @inputBlur="handleBlur" />
       <Sucker v-if="!suckerHide" @openSucker="openSucker" @selectSucker="selectSucker" />
+      <div class="reset-btn" @click="reset">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rotate-ccw reset"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+      </div>
     </div>
-    <Colors :color="rgbaString" :colors-default="colorsDefault" :colors-history-key="colorsHistoryKey"
+    <Colors ref="colorsRef" :color="rgbaString" :colors-default="colorsDefault" :colors-history-key="colorsHistoryKey"
       @selectColor="selectColor" />
     <!-- custom options -->
     <slot></slot>
@@ -161,6 +164,7 @@ export default defineComponent({
         hex: this.modelHex,
       })
     })
+    this.oldColor = this.color
   },
   methods: {
     selectSaturation(color: any) {
@@ -260,6 +264,17 @@ export default defineComponent({
         this.$refs.hue.renderSlide()
       })
     },
+    setColorsHistory(color: string) {
+      this.$refs.colorsRef.setColorsHistory(color)
+    },
+    reset() {
+      Object.assign(this, setColorValue(this.oldColor))
+      this.$emit('changeColor', {
+        rgba: this.rgba,
+        hsv: this.hsv,
+        hex: this.modelHex,
+      })
+    }
   },
 })
 </script>
@@ -274,16 +289,22 @@ export default defineComponent({
 
   &.light {
     background: #f7f8f9;
-
+    .box-wrap {
+      background: #f7f8f9;
+    }
     .sucker-wrap {
-      .sucker {
-        background: #eceef0;
-      }
+      background: #eceef0;
 
       &:hover {
         .sucker {
-          background: #f5f5f5;
+          background: #e9e9e9;
         }
+      }
+    }
+    .reset-btn {
+      background: #eceef0;
+      &:hover {
+        background: #e9e9e9;
       }
     }
 
@@ -324,6 +345,27 @@ export default defineComponent({
     }
   }
 
+  .reset-btn {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #2e333a;
+    &:hover {
+      background: #4d535c;
+    }
+    .reset {
+      width: 13px;
+      height: 13px;
+      color: #999;
+      &:hover,
+      &.active {
+        color: #1593ff;
+      }
+    }
+  }
+
   .color-set {
     display: flex;
   }
@@ -336,7 +378,8 @@ export default defineComponent({
   .box-wrap {
     display: flex;
     align-items: center;
-    height: 30px;
+    height: 25px;
+    background: #2e333a;
 
     select {
       width: 60px;

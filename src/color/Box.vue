@@ -59,13 +59,15 @@ export default defineComponent({
   font-size: 12px;
   height: 100%;
   flex: 1;
+  background: #2e333a;
   .value {
     width: 100%;
     height: 100%;
-    padding: 0 12px;
+    padding: 0 8px;
     border: 0;
     color: #fff;
-    background: #2e333a;
+    font-size: 0.7rem;
+    background: transparent;
     box-sizing: border-box;
     display: flex;
     &:active,
