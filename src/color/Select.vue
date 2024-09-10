@@ -1,10 +1,10 @@
 <template>
-    <div class="arco-select-wrapper" @click="toggleDropdown" ref="selectRef">
-        <div class="arco-select" :class="{ 'arco-select-active': isOpen }">
-            <span class="arco-select-value">{{ selectedLabel }}</span>
-            <span class="arco-select-arrow">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="arco-icon"
-                    :class="{ 'arco-icon-rotate': isOpen }">
+    <div class="color-select-wrapper" @click="toggleDropdown" ref="selectRef">
+        <div class="color-select" :class="{ 'color-select-active': isOpen }">
+            <span class="color-select-value">{{ selectedLabel }}</span>
+            <span class="color-select-arrow">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="color-icon"
+                    :class="{ 'color-icon-rotate': isOpen }">
                     <path fill="currentColor"
                         d="M12 15.25a.74.74 0 01-.53-.22l-5-5A.75.75 0 017.53 9L12 13.44 16.47 9a.75.75 0 011.06 1l-5 5a.74.74 0 01-.53.25z">
                     </path>
@@ -12,12 +12,12 @@
             </span>
         </div>
         <transition name="fade">
-            <ul v-if="isOpen" class="arco-select-dropdown">
-                <li v-for="option in options" :key="option.value" @click.stop="selectOption(option)"
-                    class="arco-select-option" :class="{ 'arco-select-option-selected': option.value === modelValue }">
+            <div v-if="isOpen" class="color-select-dropdown">
+                <div v-for="option in options" :key="option.value" @click.stop="selectOption(option)"
+                    class="color-select-option" :class="{ 'color-select-option-selected': option.value === modelValue }">
                     {{ option.label }}
-                </li>
-            </ul>
+                </div>
+            </div>
         </transition>
     </div>
 </template>
@@ -100,11 +100,11 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.arco-select-wrapper {
+.color-select-wrapper {
     position: relative;
     width: 38px;
 
-    .arco-select {
+    .color-select {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -116,20 +116,21 @@ export default defineComponent({
         transition: all 0.1s cubic-bezier(0, 0, 1, 1);
     }
 
-    .arco-select-value {
+    .color-select-value {
         font-size: 12px;
         color: #e5e6eb;
         transform: scale(0.6);
         transform-origin: left;
         width: 20px;
+        white-space: nowrap;
     }
 
-    .arco-select-arrow {
+    .color-select-arrow {
         display: flex;
         align-items: center;
     }
 
-    .arco-icon {
+    .color-icon {
         width: 12px;
         height: 12px;
         transition: transform 0.2s;
@@ -139,7 +140,7 @@ export default defineComponent({
         }
     }
 
-    .arco-select-dropdown {
+    .color-select-dropdown {
         position: absolute;
         top: 100%;
         left: 0;
@@ -153,7 +154,7 @@ export default defineComponent({
         list-style: none;
     }
 
-    .arco-select-option {
+    .color-select-option {
         padding: 2px;
         font-size: 12px;
         color: #e5e6eb;

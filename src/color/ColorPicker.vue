@@ -16,8 +16,8 @@
         @inputBlur="handleBlur" />
       <Box name="RGBA" v-show="showModel === 'RGBA'" :color="modelRgba" @inputColor="inputRgba"
         @inputFocus="handleFocus" @inputBlur="handleBlur" />
-      <Sucker v-if="!suckerHide" @openSucker="openSucker" @selectSucker="selectSucker" />
-      <div class="reset-btn" @click="reset">
+      <Sucker v-if="!suckerHide" title="取色器" @openSucker="openSucker" @selectSucker="selectSucker" />
+      <div class="reset-btn" title="重置颜色" @click="reset">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rotate-ccw reset"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
       </div>
     </div>
@@ -266,10 +266,11 @@ export default defineComponent({
       })
     },
     setColorsHistory(color: string) {
+      // @ts-ignore
       this.$refs.colorsRef.setColorsHistory(color)
     },
     reset() {
-      Object.assign(this, setColorValue(this.oldColor))
+      this.selectColor(this.oldColor)
       this.$emit('changeColor', {
         rgba: this.rgba,
         hsv: this.hsv,
@@ -313,19 +314,19 @@ export default defineComponent({
       color: #666;
     }
 
-    .arco-select {
+    .color-select {
       background-color: #e7e8e9;
       color: #666;
 
-      .arco-select-value {
+      .color-select-value {
         color: #666;
       }
     }
 
-    .arco-select-dropdown {
+    .color-select-dropdown {
       background-color: #e7e8e9;
 
-      .arco-select-option {
+      .color-select-option {
         color: #666;
       }
     }
@@ -353,6 +354,7 @@ export default defineComponent({
     align-items: center;
     justify-content: center;
     background: #2e333a;
+    cursor: pointer;
     &:hover {
       background: #4d535c;
     }
